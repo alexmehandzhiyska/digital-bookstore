@@ -1,0 +1,17 @@
+main {
+    background: url('../assets/img/bookstore-bg.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main>h1 {
+    font-size: 5rem !important;
+}
+
+main>p {
+    font-size: 2rem !important;
+}

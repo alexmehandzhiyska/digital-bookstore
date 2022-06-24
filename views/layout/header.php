@@ -13,7 +13,7 @@
                 </li>
 
                 <li class="nav-item mx-3">
-                    <a class="nav-link" href="/register">Register</a>
+                    <a class="nav-link" href="../views/auth/register.php">Register</a>
                 </li>
             </ul>
         </div>

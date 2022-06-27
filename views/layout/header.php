@@ -8,13 +8,30 @@
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
 
-                <li class="nav-item mx-3">
-                    <a class="nav-link" href="../views/auth/login.php">Login</a>
-                </li>
+                
 
-                <li class="nav-item mx-3">
-                    <a class="nav-link" href="../views/auth/register.php">Register</a>
-                </li>
+                <?php 
+                    session_start();
+                    if (isset($_SESSION['logged_in'])) {
+                        echo '
+                            <li class="nav-item mx-3">
+                                <a class="nav-link" href="../views/auth/logout.php">Logout</a>
+                            </li>';
+                    } else {
+                        echo '
+                            <li class="nav-item mx-3">
+                                <a class="nav-link" href="../views/auth/login.php">Login</a>
+                            </li>
+            
+                            <li class="nav-item mx-3">
+                                <a class="nav-link" href="../views/auth/register.php">Register</a>
+                            </li>
+                        ';
+                    }
+
+                    
+                ?>
+                
             </ul>
         </div>
     </nav>

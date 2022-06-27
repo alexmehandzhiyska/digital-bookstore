@@ -100,9 +100,6 @@
             
             if ($data->num_rows == 0) {
                 $sql_query = "INSERT INTO users (first_name, last_name, email, password) VALUES ('$first_name', '$last_name', '$email', '$password')";
-                echo $first_name;
-                echo $last_name;
-                echo $email;
 
                 if ($db->query($sql_query) === true) {
                     $_SESSION['logged_in'] = '1';

@@ -9,7 +9,7 @@
                 </li>
 
                 <li class="nav-item mx-3">
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="../views/auth/login.php">Login</a>
                 </li>
 
                 <li class="nav-item mx-3">

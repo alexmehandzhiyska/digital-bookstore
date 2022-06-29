@@ -14,8 +14,41 @@
     height: 260px;
 }
 
+.details-book-img {
+    width: 380px;
+    height: 500px;
+}
+
+
 .title-link {
     text-decoration: none;
     color: black;
     transition: 0.3s ease-out;
+}
+
+.details-book {
+    width: 70vw;
+    box-shadow: 0px 1px 15px -2px #000000;
+    background: #f2f0f0;
+}
+
+.wishlist-btn {
+    font-size: 2rem;
+    color: rgb(195, 50, 50);
+    transition: 0.5s ease-out;
+}
+
+.wishlist-btn:hover {
+    color: red;
+}
+
+@media all and (max-width: 1024px) {
+    .details-book {
+        flex-direction: column;
+        margin-bottom: 5em;
+    }
+
+    .details-book-img {
+        margin-top: 2em;
+    }
 }

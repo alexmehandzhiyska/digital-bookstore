@@ -19,10 +19,12 @@
         <section class="d-flex justify-content-around">
             <?php include '../../services/bookService.php' ?>
             <?php 
+                $books = getAll();
+                
                 for ($i = 0; $i < sizeof($books); $i++) {
                     echo "
                         <article class='book d-flex flex-column align-items-center'>
-                            <h4 class='mt-4'><a class='title-link' href='./bookDetails.php'>{$books[$i]['title']}</a></h4>
+                            <h4 class='mt-4'><a class='title-link' href='./bookDetails.php?id={$books[$i]['id']}'>{$books[$i]['title']}</a></h4>
                             <p class='mb-4'>{$books[$i]['first_name']} {$books[$i]['last_name']}</p>
                             <img src='../../assets/img/{$books[$i]['book_image']}' alt='Book image' class='book-img' />
                             <h5 class='my-2'>{$books[$i]['price']} lv.</h5>

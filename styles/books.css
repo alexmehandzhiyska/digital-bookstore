@@ -32,14 +32,29 @@
     background: #f2f0f0;
 }
 
-.wishlist-btn {
+#wishlist-btn,
+#wishlist-btn-selected {
     font-size: 2rem;
     color: rgb(195, 50, 50);
     transition: 0.5s ease-out;
 }
 
-.wishlist-btn:hover {
+#wishlist-btn:hover {
     color: red;
+}
+
+#wishlist-btn-selected {
+    color: red;
+}
+
+#wishlist-remove-btn {
+    font-size: 1rem;
+    color: #0d6efd;
+    transition: 0.5s ease-out;
+}
+
+#wishlist-remove-btn-wrapper:hover #wishlist-remove-btn {
+    color: white;
 }
 
 @media all and (max-width: 1024px) {

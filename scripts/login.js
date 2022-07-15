@@ -14,8 +14,8 @@ $('#login-form').on('submit', e => {
             password: password,
         },
         success: (response) => {
-            console.log(response);
             if (response.includes('success')) {
+                localStorage.setItem('email', email);
                 window.location = 'home.php';
             }
         },

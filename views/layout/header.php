@@ -17,6 +17,10 @@
                             </li>
 
                             <li class="nav-item mx-3">
+                                <a class="nav-link" href="wishlist.php">Wishlist</a>
+                            </li>
+
+                            <li class="nav-item mx-3">
                                 <a class="nav-link" href="logout.php">Logout</a>
                             </li>';
                     } else {

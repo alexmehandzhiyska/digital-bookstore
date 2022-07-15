@@ -20,6 +20,7 @@ $('#register-form').on('submit', e => {
         },
         success: (response) => {
             if (response.includes('success')) {
+                localStorage.setItem('email', email);
                 window.location = 'home.php';
             }
         },

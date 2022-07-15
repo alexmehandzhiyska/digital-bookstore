@@ -16,7 +16,7 @@ CREATE TABLE authors (
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     image VARCHAR(50),
-    bio VARCHAR(1000)
+    bio VARCHAR(5000)
 );
 
 INSERT INTO authors (first_name, last_name, image, bio)
@@ -31,7 +31,7 @@ CREATE TABLE books (
     author_id INT NOT NULL,
     genre VARCHAR(30) NOT NULL,
     year_released INT,
-    description VARCHAR(1000),
+    description VARCHAR(5000),
     ISBN VARCHAR(13) NOT NULL,
     language VARCHAR(30) NOT NULL,
     pages INT,

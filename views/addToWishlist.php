@@ -12,8 +12,8 @@
 
         $result = $db->query("INSERT INTO wishlists (user_id, book_id) VALUES ('$user_id', '$book_id')");
 
-        if ($result === TRUE) {
-            echo "Success";
+        if ($result === true) {
+            echo "success";
         } else {
             echo "Error: <br>" . $db->error;
         }

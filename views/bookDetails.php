@@ -22,6 +22,8 @@
                 $id = $_GET['id'];
                 $book = getOne($id);
 
+                $email = $_SESSION['email'];
+
                 echo "
                         <article class='details-book mt-5 d-flex align-items-center justify-content-center'>
                             <section class='px-5'>
@@ -70,11 +72,18 @@
                                     <i class='fa-solid fa-cart-shopping mx-2'></i>
                                     <span>Add to card</span>
                                 </div>
-
-                                <i class='mx-4 mb-3 fa-solid fa-heart' id='wishlist-btn'></i>
-                            </section>
-                        </article>
                     ";
+                                              
+                $is_wishlisted = checkIfWishlisted($email, $book['book_id']);
+
+                if ($is_wishlisted === true) {
+                    echo "<i class='mx-4 mb-3 fa-solid fa-heart' id='wishlist-btn-selected'></i>";
+                } else {
+                    echo "<i class='mx-4 mb-3 fa-solid fa-heart' id='wishlist-btn'></i>";
+                }
+                
+                
+                echo "</section></article>";
             ?>
         </section>
     </main>

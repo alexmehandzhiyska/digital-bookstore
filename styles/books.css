@@ -32,13 +32,18 @@
     background: #f2f0f0;
 }
 
-#wishlist-btn {
+#wishlist-btn,
+#wishlist-btn-selected {
     font-size: 2rem;
     color: rgb(195, 50, 50);
     transition: 0.5s ease-out;
 }
 
 #wishlist-btn:hover {
+    color: red;
+}
+
+#wishlist-btn-selected {
     color: red;
 }
 

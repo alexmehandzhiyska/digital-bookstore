@@ -32,12 +32,12 @@
         $user = $user_data->fetch_assoc();
         $user_id = $user['id'];
 
-        $book_data = $db->query("SELECT books.id AS book_id, title, books.image AS book_image, price, first_name, last_name FROM books JOIN authors ON books.author_id = authors.id WHERE books.id IN (SELECT book_id FROM wishlists WHERE user_id = '$user_id')");
+        $books_data = $db->query("SELECT books.id AS book_id, title, books.image AS book_image, price, first_name, last_name FROM books JOIN authors ON books.author_id = authors.id WHERE books.id IN (SELECT book_id FROM wishlists WHERE user_id = '$user_id')");
         
-        if ($book_data->num_rows  > 0) {
+        if ($books_data->num_rows  > 0) {
             $books = array();
     
-            while($row = $book_data->fetch_assoc()) {
+            while($row = $books_data->fetch_assoc()) {
                 $book = array("id"=>$row["book_id"], "title"=>$row["title"], "first_name"=>$row["first_name"], "last_name"=>$row["last_name"], "book_image"=>$row["book_image"], "price"=>number_format($row["price"], 2));
                 array_push($books, $book);
             }
@@ -45,6 +45,22 @@
             return $books;
         } else {
             return array();
+        }
+    }
+
+    function checkIfWishlisted($email, $book_id) {
+        $db = new mysqli('localhost', 'root', '', 'digital-bookstore');
+
+        $user_data = $db->query("SELECT id, first_name FROM users WHERE email = '$email'");
+        $user = $user_data->fetch_assoc();
+        $user_id = $user['id'];
+
+        $book_data = $db->query("SELECT books.id FROM books WHERE books.id IN (SELECT book_id FROM wishlists WHERE user_id = '$user_id' AND book_id = '$book_id')");
+        
+        if ($book_data->num_rows  > 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 ?>

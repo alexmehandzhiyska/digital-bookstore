@@ -63,4 +63,14 @@
             return false;
         }
     }
+
+    function getBookRating($book_id) {
+        $db = new mysqli('localhost', 'root', '', 'digital-bookstore');
+
+        $ratings_data = $db->query("SELECT rating FROM ratings WHERE book_id = $book_id");
+        $ratings = $ratings_data->fetch_array();
+
+        $averageRating = array_sum($ratings) / count($ratings);
+        return $averageRating;
+    }
 ?>

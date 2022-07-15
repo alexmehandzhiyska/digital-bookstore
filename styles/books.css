@@ -57,6 +57,12 @@
     color: white;
 }
 
+.rating-star {
+    margin: 0 1px;
+    font-size: 1.1rem;
+    color: #ffb400;
+}
+
 @media all and (max-width: 1024px) {
     .details-book {
         flex-direction: column;

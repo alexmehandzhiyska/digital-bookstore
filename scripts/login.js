@@ -16,7 +16,7 @@ $('#login-form').on('submit', e => {
         success: (response) => {
             console.log(response);
             if (response.includes('success')) {
-                window.location = '../home.php';
+                window.location = 'home.php';
             }
         },
         dataType: 'text'

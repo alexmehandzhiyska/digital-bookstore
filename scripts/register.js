@@ -20,7 +20,7 @@ $('#register-form').on('submit', e => {
         },
         success: (response) => {
             if (response.includes('success')) {
-                window.location = '../home.php';
+                window.location = 'home.php';
             }
         },
         dataType: 'text'

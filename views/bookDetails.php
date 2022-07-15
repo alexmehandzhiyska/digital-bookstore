@@ -26,6 +26,8 @@
 
                 echo "
                         <article class='details-book mt-5 d-flex align-items-center justify-content-center'>
+                            <input type='hidden' value={$book['book_id']} />
+
                             <section class='px-5'>
                                 <img src='../assets/img/{$book['book_image']}' alt='Book image' class='details-book-img' />
                             </section>

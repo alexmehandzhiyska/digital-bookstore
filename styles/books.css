@@ -47,6 +47,16 @@
     color: red;
 }
 
+#wishlist-remove-btn {
+    font-size: 1rem;
+    color: #0d6efd;
+    transition: 0.5s ease-out;
+}
+
+#wishlist-remove-btn-wrapper:hover #wishlist-remove-btn {
+    color: white;
+}
+
 @media all and (max-width: 1024px) {
     .details-book {
         flex-direction: column;

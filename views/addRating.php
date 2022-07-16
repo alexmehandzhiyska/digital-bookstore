@@ -10,12 +10,18 @@
         $user = $data->fetch_assoc();
         $user_id = $user['id'];
 
-        $result = $db->query("INSERT INTO ratings (user_id, book_id, rating) VALUES ('$user_id', '$book_id', '$rating')");
+        $rating_data = $db->query("SELECT rating FROM ratings WHERE user_id = '$user_id' AND book_id = '$book_id'");
 
-        if ($result === true) {
+        if ($rating_data->num_rows > 0) {
             echo $book_id;
         } else {
-            echo "Error: <br>" . $db->error;
+            $result = $db->query("INSERT INTO ratings (user_id, book_id, rating) VALUES ('$user_id', '$book_id', '$rating')");
+
+            if ($result === true) {
+                echo $book_id;
+            } else {
+                echo "Error: <br>" . $db->error;
+            }
         }
     }
 ?>

@@ -21,9 +21,10 @@
             <?php 
                 $id = $_GET['id'];
                 $book = getOne($id);
-                $rating = getBookRating($id);
+                $average_rating = getBookRating($id);
                 
                 $email = $_SESSION['email'];
+                $user_rating = getUserRating($email, $id);
 
                 echo 
                 "
@@ -39,15 +40,19 @@
                             <div class='rating my-1'>
                 ";
 
-                for ($i = 0; $i < 5 - $rating; $i++) {
-                    echo "<span class='rating-star-empty'>☆</i></span>";
+                for ($i = 1; $i <= 5; $i++) {
+                    $star_id = 6 - $i;
+
+                    if ($star_id <= $average_rating) {
+                        echo "<span class='rating-star' id={$star_id}>☆</i></span>";
+                    } else {
+                        echo "<span class='rating-star rating-star-empty' id={$star_id}>☆</i></span>";
+                    }
                 }
 
-                for ($i = 0; $i < $rating; $i++) {
-                    echo "<span class='rating-star'>☆</i></span>";
+                if ($user_rating) {
+                    echo "<p class='user-rating'>Your rating: {$user_rating}</p>";
                 }
-
-                
                 
                 echo
                 "

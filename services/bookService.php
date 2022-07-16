@@ -68,9 +68,30 @@
         $db = new mysqli('localhost', 'root', '', 'digital-bookstore');
 
         $ratings_data = $db->query("SELECT rating FROM ratings WHERE book_id = $book_id");
-        $ratings = $ratings_data->fetch_array();
+        $ratings = array();
+
+        while($row = mysqli_fetch_array($ratings_data)) {
+            array_push($ratings, $row['rating']);
+        }
 
         $averageRating = array_sum($ratings) / count($ratings);
         return floor($averageRating);
+    }
+
+    function getUserRating($email, $book_id) {
+        $db = new mysqli('localhost', 'root', '', 'digital-bookstore');
+
+        $user_data = $db->query("SELECT id, first_name FROM users WHERE email = '$email'");
+        $user = $user_data->fetch_assoc();
+        $user_id = $user['id'];
+
+        $rating_data = $db->query("SELECT rating FROM ratings WHERE user_id = '$user_id' AND book_id = '$book_id'");
+        
+        if ($rating_data->num_rows  > 0) {
+            $rating = $rating_data->fetch_assoc();
+            return $rating['rating'];
+        } else {
+            return null;
+        }
     }
 ?>

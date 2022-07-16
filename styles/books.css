@@ -87,6 +87,11 @@
     color: rgba(173, 173, 173, 0.859);
 }
 
+.user-rating {
+    font-size: 0.9rem;
+    margin-top: 3px;
+}
+
 @media all and (max-width: 1024px) {
     .details-book {
         flex-direction: column;

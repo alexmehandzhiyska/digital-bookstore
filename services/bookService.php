@@ -71,6 +71,6 @@
         $ratings = $ratings_data->fetch_array();
 
         $averageRating = array_sum($ratings) / count($ratings);
-        return $averageRating;
+        return floor($averageRating);
     }
 ?>

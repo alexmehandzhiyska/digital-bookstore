@@ -36,12 +36,18 @@
 
                         <section class='px-5'>
                             <h1 class='mt-5'>{$book['title']}</h1>
-                            <div class='my-1'>
+                            <div class='rating my-1'>
                 ";
 
-                for ($i = 0; $i < $rating; $i++) {
-                    echo "<span class='rating-star'><i class='fa-solid fa-star'></i></span>";
+                for ($i = 0; $i < 5 - $rating; $i++) {
+                    echo "<span class='rating-star-empty'>☆</i></span>";
                 }
+
+                for ($i = 0; $i < $rating; $i++) {
+                    echo "<span class='rating-star'>☆</i></span>";
+                }
+
+                
                 
                 echo
                 "

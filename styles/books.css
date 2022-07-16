@@ -57,10 +57,34 @@
     color: white;
 }
 
-.rating-star {
-    margin: 0 1px;
-    font-size: 1.1rem;
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: left;
+}
+
+.rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+}
+
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+    content: "\2605";
+    position: absolute;
     color: #ffb400;
+}
+
+.rating-star {
+    font-size: 1.35rem;
+    color: #ffb400;
+}
+
+.rating-star-empty {
+    margin: 0 1px;
+    font-size: 1.35rem;
+    color: rgba(173, 173, 173, 0.859);
 }
 
 @media all and (max-width: 1024px) {

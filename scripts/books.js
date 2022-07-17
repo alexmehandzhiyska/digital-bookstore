@@ -1,3 +1,4 @@
+
 $('#remove-book-btn').on('click', (e) => {
     const wrapperEl = e.target.parentElement.parentElement;
     const bookId = wrapperEl.querySelector('input').value;
@@ -83,6 +84,50 @@ $('.rating-star').on('click', (e) => {
         success: (response) => {
             if (!response.includes('Error')) {
                 window.location = `bookDetails.php?id=${response}`;
+            }
+        },
+        dataType: 'text'
+    });
+});
+
+
+$('#add-to-cart-btn').on('click', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const bookId = urlParams.get('id');
+
+    const email = localStorage.getItem('email');
+
+    $.ajax({
+        url: 'addToCart.php',
+        method: 'POST',
+        data: {
+            email: email,
+            book_id: bookId
+        },
+        success: (response) => {
+            if (response.includes('success')) {
+               $('#wishlist-btn').prop('id', 'wishlist-btn-selected');
+            }
+        },
+        dataType: 'text'
+    });
+});
+
+$('.add-to-cart-btn').on('click', (e) => {
+    const bookId = e.target.parentElement.parentElement.querySelector('input').value;
+
+    const email = localStorage.getItem('email');
+
+    $.ajax({
+        url: 'addToCart.php',
+        method: 'POST',
+        data: {
+            email: email,
+            book_id: bookId
+        },
+        success: (response) => {
+            if (response.includes('success')) {
+               $('#wishlist-btn').prop('id', 'wishlist-btn-selected');
             }
         },
         dataType: 'text'

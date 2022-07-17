@@ -104,7 +104,7 @@
 
                     <div class='btn btn-primary mb-3'>
                         <i class='fa-solid fa-cart-shopping mx-2'></i>
-                        <span>Add to card</span>
+                        <span id='add-to-cart-btn'>Add to cart</span>
                     </div>
                 ";
                                               

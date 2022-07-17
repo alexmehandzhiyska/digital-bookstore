@@ -64,11 +64,11 @@ CREATE TABLE orders (
 
 CREATE TABLE order_items (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    order_id INT NOT NULL,
+    user_id INT NOT NULL,
     book_id INT NOT NULL,
-    price FLOAT NOT NULL,
-    quantity INT NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES orders(id),
+    -- price FLOAT NOT NULL,
+    -- quantity INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (book_id) REFERENCES books(id)
 );
 

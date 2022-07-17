@@ -21,60 +21,92 @@
             <?php 
                 $id = $_GET['id'];
                 $book = getOne($id);
-
+                $average_rating = getBookRating($id);
+                
                 $email = $_SESSION['email'];
+                $user_rating = getUserRating($email, $id);
 
-                echo "
-                        <article class='details-book mt-5 d-flex align-items-center justify-content-center'>
-                            <input type='hidden' value={$book['book_id']} />
+                echo 
+                "
+                    <article class='details-book mt-5 d-flex align-items-center justify-content-center'>
+                        <input type='hidden' value={$book['book_id']} />
 
-                            <section class='px-5'>
-                                <img src='../assets/img/{$book['book_image']}' alt='Book image' class='details-book-img' />
-                            </section>
+                        <section class='px-5'>
+                            <img src='../assets/img/{$book['book_image']}' alt='Book image' class='details-book-img' />
+                        </section>
 
-                            <section class='px-5'>
-                                <h1 class='mt-5'>{$book['title']}</h1>
-                                <p class='my-4'>{$book['description']}</p>
+                        <section class='px-5'>
+                            <h1 class='mt-5'>{$book['title']}</h1>
+                            <div class='rating my-1'>
+                ";
 
-                                <table class='table'>
-                                    <tr>
-                                        <td>Author</td>
-                                        <td>{$book['first_name']} {$book['last_name']}</td>
-                                    </tr>
+                for ($i = 1; $i <= 5; $i++) {
+                    $star_id = 6 - $i;
+                    
+                    if ($user_rating) {
+                        if ($star_id <= $average_rating) {
+                            echo "<span class='rating-star-disabled'>☆</i></span>";
+                        } else {
+                            echo "<span class='rating-star-empty-disabled'>☆</i></span>";
+                        }
+                    } else {
+                        if ($star_id <= $average_rating) {
+                            echo "<span class='rating-star' id={$star_id}>☆</i></span>";
+                        } else {
+                            echo "<span class='rating-star rating-star-empty' id={$star_id}>☆</i></span>";
+                        }
+                    }
+                    
+                }
 
-                                    <tr>
-                                        <td>Genre</td>
-                                        <td>{$book['genre']}</td>
-                                    </tr>
+                if ($user_rating) {
+                    echo "<p class='user-rating'>Your rating: {$user_rating}</p>";
+                }
+                
+                echo
+                "
+                    </div>
+                    <p class='my-4'>{$book['description']}</p>
 
-                                    <tr>
-                                        <td>Release year</td>
-                                        <td>{$book['year_released']}</td>
-                                    </tr>
+                    <table class='table'>
+                        <tr>
+                            <td>Author</td>
+                            <td>{$book['first_name']} {$book['last_name']}</td>
+                        </tr>
 
-                                    <tr>
-                                        <td>Pages</td>
-                                        <td>{$book['pages']}</td>
-                                    </tr>
+                        <tr>
+                            <td>Genre</td>
+                            <td>{$book['genre']}</td>
+                        </tr>
 
-                                    <tr>
-                                        <td>ISBN</td>
-                                        <td>{$book['ISBN']}</td>
-                                    </tr>
+                        <tr>
+                            <td>Release year</td>
+                            <td>{$book['year_released']}</td>
+                        </tr>
 
-                                    <tr>
-                                        <td>Language</td>
-                                        <td>{$book['language']}</td>
-                                    </tr>
-                                </table>
+                        <tr>
+                            <td>Pages</td>
+                            <td>{$book['pages']}</td>
+                        </tr>
 
-                                <h3 class='my-4'>{$book['price']} lv.</h3>
+                        <tr>
+                            <td>ISBN</td>
+                            <td>{$book['ISBN']}</td>
+                        </tr>
 
-                                <div class='btn btn-primary mb-3'>
-                                    <i class='fa-solid fa-cart-shopping mx-2'></i>
-                                    <span>Add to card</span>
-                                </div>
-                    ";
+                        <tr>
+                            <td>Language</td>
+                            <td>{$book['language']}</td>
+                        </tr>
+                    </table>
+
+                    <h3 class='my-4'>{$book['price']} lv.</h3>
+
+                    <div class='btn btn-primary mb-3'>
+                        <i class='fa-solid fa-cart-shopping mx-2'></i>
+                        <span>Add to card</span>
+                    </div>
+                ";
                                               
                 $is_wishlisted = checkIfWishlisted($email, $book['book_id']);
 

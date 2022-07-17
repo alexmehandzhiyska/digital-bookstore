@@ -69,8 +69,8 @@
     width: 1.1em;
 }
 
-.rating > span:hover:before,
-.rating > span:hover ~ span:before {
+.rating > .rating-star:hover:before,
+.rating > .rating-star:hover ~ .rating-star:before {
     content: "\2605";
     position: absolute;
     color: #ffb400;
@@ -79,6 +79,17 @@
 .rating-star {
     font-size: 1.35rem;
     color: #ffb400;
+}
+
+.rating-star-disabled {
+    font-size: 1.35rem;
+    color: #ffb400;
+}
+
+.rating-star-empty-disabled {
+    margin: 0 1px;
+    font-size: 1.35rem;
+    color: rgba(173, 173, 173, 0.859);
 }
 
 .rating-star-empty {

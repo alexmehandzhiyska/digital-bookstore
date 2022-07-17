@@ -42,12 +42,21 @@
 
                 for ($i = 1; $i <= 5; $i++) {
                     $star_id = 6 - $i;
-
-                    if ($star_id <= $average_rating) {
-                        echo "<span class='rating-star' id={$star_id}>☆</i></span>";
+                    
+                    if ($user_rating) {
+                        if ($star_id <= $average_rating) {
+                            echo "<span class='rating-star-disabled'>☆</i></span>";
+                        } else {
+                            echo "<span class='rating-star-empty-disabled'>☆</i></span>";
+                        }
                     } else {
-                        echo "<span class='rating-star rating-star-empty' id={$star_id}>☆</i></span>";
+                        if ($star_id <= $average_rating) {
+                            echo "<span class='rating-star' id={$star_id}>☆</i></span>";
+                        } else {
+                            echo "<span class='rating-star rating-star-empty' id={$star_id}>☆</i></span>";
+                        }
                     }
+                    
                 }
 
                 if ($user_rating) {

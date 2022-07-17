@@ -25,7 +25,9 @@
                             </li>
                             
                             <li class="nav-item mx-3 ">
-                                <i class="fa-solid fa-cart-shopping fa-lg my-1"></i>
+                                <a class="nav-link" href="cart.php">
+                                    <i class="fa-solid fa-cart-shopping fa-lg my-1"></i>
+                                </a>    
                             </li>
                             ';
                     } else {

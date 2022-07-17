@@ -16,14 +16,14 @@
 <body>
     <?php include './layout/header.php' ?>
 
-    <main>
+    <main class='d-flex flex-column align-items-center'>
         <h1 class="text-center my-5">Shopping Cart</h1>
 
         <section class="d-flex justify-content-around">
             <?php include '../services/bookService.php' ?>
             <?php 
                 $books = getCartBooks($_SESSION['email']);
-
+                $total_price = 0;
                 echo "
                         <table class='cart-table table table-striped'>
                             <thead>
@@ -38,18 +38,37 @@
                             <tbody>";
                 
                 for ($i = 0; $i < sizeof($books); $i++) {
+                    $total_price += $books[$i]['price'];
+
                     echo "
                         <tr>
                             <td><img class='cart-book-img' src='../assets/img/{$books[$i]['book_image']}' /></td>
-                            <td>{$books[$i]['title']}</td>
+                            <td><a class='title-link' href='./bookDetails.php?id={$books[$i]['id']}'>{$books[$i]['title']}</a></td>
                             <td>{$books[$i]['first_name']} {$books[$i]['last_name']}</td>
                             <td>{$books[$i]['genre']}</td>
-                            <td>{$books[$i]['price']}</td>
-                            
+                            <td>{$books[$i]['price']} lv.</td>
                         </tr>
                     ";
                 }
-                echo "</tbody></table>";
+
+                $total_price = number_format($total_price, 2);
+                
+                echo "
+                            </tbody>
+
+                            <tfoot>
+                                <td colspan='3'></td>
+                                <td><b>Total price</b></td>
+                                <td>{$total_price} lv .</td>
+                            </tfoot>
+                        </table>
+                    </section>
+
+                    <div id='finalize-order-btn' class='btn btn-primary mt-5'>
+                        <i class='fa-solid fa-arrow-right px-2'></i>
+                        <a href='orderForm.php' class='order-form-btn'>Proceed to order form</a>
+                    </div>
+                ";
             ?>
         </section>
     </main>

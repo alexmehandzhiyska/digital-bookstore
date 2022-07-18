@@ -1,3 +1,5 @@
+import Swal from '../node_modules/sweetalert2/src/sweetalert2.js';
+
 $('#register-form').on('submit', e => {
     e.preventDefault();
 
@@ -22,6 +24,14 @@ $('#register-form').on('submit', e => {
             if (response.includes('success')) {
                 localStorage.setItem('email', email);
                 window.location = 'home.php';
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Cannot create your account. Please try again later.',
+                })
+                .then(() => {
+                    window.location = 'register.php';
+                });
             }
         },
         dataType: 'text'

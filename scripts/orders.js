@@ -33,6 +33,14 @@ $('#order-form').on('submit', e => {
                 .then(() => {
                     window.location = 'home.php';
                 });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Cannot place your order. Please try again later.',
+                })
+                .then(() => {
+                    window.location = 'orderForm.php';
+                });
             }
         },
         dataType: 'text'

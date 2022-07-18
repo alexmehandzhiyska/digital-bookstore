@@ -1,3 +1,4 @@
+import Swal from '../node_modules/sweetalert2/src/sweetalert2.js';
 
 $('#remove-book-btn').on('click', (e) => {
     const wrapperEl = e.target.parentElement.parentElement;
@@ -84,6 +85,11 @@ $('.rating-star').on('click', (e) => {
         success: (response) => {
             if (!response.includes('Error')) {
                 window.location = `bookDetails.php?id=${response}`;
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Cannot rate this book now. Please try again later.',
+                });
             }
         },
         dataType: 'text'

@@ -1,3 +1,5 @@
+import Swal from '../node_modules/sweetalert2/src/sweetalert2.js';
+
 $('#login-form').on('submit', e => {
     e.preventDefault();
 
@@ -17,6 +19,11 @@ $('#login-form').on('submit', e => {
             if (response.includes('success')) {
                 localStorage.setItem('email', email);
                 window.location = 'home.php';
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid email or password. Please try again.',
+                });
             }
         },
         dataType: 'text'

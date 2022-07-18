@@ -1,3 +1,5 @@
+import Swal from '../node_modules/sweetalert2/src/sweetalert2.js';
+
 $('#order-form').on('submit', e => {
     e.preventDefault();
 
@@ -24,7 +26,21 @@ $('#order-form').on('submit', e => {
         },
         success: (response) => {
             if (response.includes('success')) {
-                window.location = 'home.php';
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Your order has been placed successfully.',
+                })
+                .then(() => {
+                    window.location = 'home.php';
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Cannot place your order. Please try again later.',
+                })
+                .then(() => {
+                    window.location = 'orderForm.php';
+                });
             }
         },
         dataType: 'text'

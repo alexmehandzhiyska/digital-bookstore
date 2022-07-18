@@ -69,7 +69,6 @@ CREATE TABLE order_items (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     book_id INT NOT NULL,
     order_id INT NOT NULL,
-    price FLOAT NOT NULL,
     FOREIGN KEY (book_id) REFERENCES books(id),
     FOREIGN KEY (order_id) REFERENCES orders(id)
 );

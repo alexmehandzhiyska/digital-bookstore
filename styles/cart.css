@@ -24,3 +24,8 @@
 #order-form {
     width: 55vw;
 }
+
+.place-order-input {
+    all: unset;
+    cursor: pointer;
+}

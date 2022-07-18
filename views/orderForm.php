@@ -53,7 +53,7 @@
             <div class="d-flex flex-column align-items-center justify-content-center">
                 <div class="d-flex justify-content-center align-items-center btn btn-primary btn-block mb-5" id="place-order-btn"> 
                     <i class="fa-solid fa-cart-arrow-down px-2"></i>
-                    <input type="submit" class="my-0 px-2" value="Place order" />
+                    <input type="submit" class="place-order-input my-0 px-2" value="Place order" />
                 </div>
             </div>
         </form>
@@ -77,9 +77,23 @@
             $user = $user_data->fetch_assoc();
             $user_id = $user['id'];
 
-            $sql_query = "INSERT INTO orders (user_id, first_name, last_name, address, phone, additional_information) VALUES ('$user_id', '$first_name', '$last_name', '$address', '$phone', '$additional_information')";
+            $order_result = $db->query("INSERT INTO orders (user_id, first_name, last_name, address, phone, additional_information) VALUES ('$user_id', '$first_name', '$last_name', '$address', '$phone', '$additional_information')");
 
-            if ($db->query($sql_query) === true) {
+            if ($order_result === true) {
+                $order_id = $db->insert_id;
+            } else {
+                echo $db->error;
+                return;
+            }
+
+            $order_items_data = $db->query("SELECT book_id FROM cart_books WHERE user_id = '$user_id'");
+
+            while($row = mysqli_fetch_array($order_items_data)) {
+                $book_id = $row['book_id'];
+                $order_items_result = $db->query("INSERT INTO order_items (book_id, order_id) VALUES ($book_id, $order_id)");
+            }
+            
+            if ($order_items_result === true) {
                 echo 'success';
             } else {
                 echo $db->error;

@@ -24,14 +24,15 @@
             <?php 
                 $id = $_GET['id'];
                 $book = getOne($id);
+                $book_price = number_format($book['price'], 2);
                 $average_rating = getBookRating($id);
                 
                 $email = $_SESSION['email'];
                 $user_rating = getUserRating($email, $id);
-
+            
                 echo 
                 "
-                    <article class='details-book mt-5 d-flex align-items-center justify-content-center'>
+                    <article class='details-book pb-3 my-5 d-flex align-items-center justify-content-center'>
                         <input type='hidden' value={$book['book_id']} />
 
                         <section class='px-5'>
@@ -65,7 +66,7 @@
                 if ($user_rating) {
                     echo "<p class='user-rating'>Your rating: {$user_rating}</p>";
                 }
-                
+
                 echo
                 "
                     </div>
@@ -103,7 +104,7 @@
                         </tr>
                     </table>
 
-                    <h3 class='my-4'>{$book['price']} lv.</h3>
+                    <h3 class='my-4'>{$book_price} lv.</h3>
 
                     <div class='btn btn-primary mb-3'>
                         <i class='fa-solid fa-cart-shopping mx-2'></i>
@@ -118,10 +119,10 @@
                 } else {
                     echo "<i class='mx-4 mb-3 fa-solid fa-heart' id='wishlist-btn'></i>";
                 }
-                
-                
-                echo "</section></article>";
             ?>
+
+                </section>
+            </article>
         </section>
     </main>
 

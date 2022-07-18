@@ -56,19 +56,28 @@ CREATE TABLE authors_books (
 CREATE TABLE orders (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
-    price FLOAT NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    phone VARCHAR(14) NOT NULL,
+    address VARCHAR(100) NOT NULL,
+    additional_information TEXT,
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    shipping_address VARCHAR(100) NOT NULL,
     FOREIGN KEY(user_id) REFERENCES users(id)
 );
 
 CREATE TABLE order_items (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    order_id INT NOT NULL,
     book_id INT NOT NULL,
-    price FLOAT NOT NULL,
-    quantity INT NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES orders(id),
+    order_id INT NOT NULL,
+    FOREIGN KEY (book_id) REFERENCES books(id),
+    FOREIGN KEY (order_id) REFERENCES orders(id)
+);
+
+CREATE TABLE cart_books (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    book_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (book_id) REFERENCES books(id)
 );
 

@@ -1,0 +1,31 @@
+.cart-book-img {
+    width: 90px;
+    height: 120px;
+}
+
+.cart-table {
+    width: 65vw !important;
+}
+
+.order-form-btn {
+    text-decoration: none;
+    color: white;
+}
+
+.order-form-btn:hover {
+    text-decoration: none;
+    color: white;
+}
+
+#place-order-btn {
+    width: 15vw;
+}
+
+#order-form {
+    width: 55vw;
+}
+
+.place-order-input {
+    all: unset;
+    cursor: pointer;
+}

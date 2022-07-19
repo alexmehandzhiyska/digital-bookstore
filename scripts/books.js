@@ -112,7 +112,10 @@ $('#add-to-cart-btn').on('click', () => {
         },
         success: (response) => {
             if (response.includes('success')) {
-               $('#wishlist-btn').prop('id', 'wishlist-btn-selected');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'The book has been added to your cart successfully.',
+                });
             }
         },
         dataType: 'text'
@@ -133,7 +136,10 @@ $('.add-to-cart-btn').on('click', (e) => {
         },
         success: (response) => {
             if (response.includes('success')) {
-               $('#wishlist-btn').prop('id', 'wishlist-btn-selected');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'The book has been added to your cart successfully.',
+                });
             }
         },
         dataType: 'text'

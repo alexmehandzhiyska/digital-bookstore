@@ -1,6 +1,6 @@
 import Swal from '../node_modules/sweetalert2/src/sweetalert2.js';
 
-$('#remove-book-btn').on('click', (e) => {
+$('.remove-book-btn').on('click', (e) => {
     const wrapperEl = e.target.parentElement.parentElement;
     const bookId = wrapperEl.querySelector('input').value;
 

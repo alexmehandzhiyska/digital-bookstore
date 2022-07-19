@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.css">
     <script src="https://kit.fontawesome.com/ff09b572f7.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="../scripts/books.js" defer></script>
+    <script src="../scripts/books.js" type="module" defer></script>
     <script src="../scripts/orders.js" type="module" defer></script>
     <title>Digital Bookstore</title>
 </head>
@@ -93,8 +93,10 @@
                 $book_id = $row['book_id'];
                 $order_items_result = $db->query("INSERT INTO order_items (book_id, order_id) VALUES ($book_id, $order_id)");
             }
+
+            $cart_data = $db->query("DELETE FROM cart_books WHERE user_id = $user_id");
             
-            if ($order_items_result === true) {
+            if ($cart_data === true) {
                 echo 'success';
             } else {
                 echo $db->error;

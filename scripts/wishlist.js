@@ -5,7 +5,7 @@ $('.remove-book-btn').on('click', (e) => {
     const email = localStorage.getItem('email');
 
     $.ajax({
-        url: 'removeFromWishlist.php',
+        url: '/wishlist/delete',
         method: 'POST',
         data: {
             email: email,
@@ -13,7 +13,7 @@ $('.remove-book-btn').on('click', (e) => {
         },
         success: (response) => {
             if (response.includes('success')) {
-                window.location = 'wishlist.php';
+                window.location = '/wishlist';
             }
         },
         dataType: 'text'
@@ -21,13 +21,13 @@ $('.remove-book-btn').on('click', (e) => {
 });
 
 $('#wishlist-btn').on('click', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const bookId = urlParams.get('id');
+    const currentPath = window.location.href;
+    const bookId = /\d+/.exec(currentPath)[0];
 
     const email = localStorage.getItem('email');
 
     $.ajax({
-        url: 'addToWishlist.php',
+        url: '/wishlist',
         method: 'POST',
         data: {
             email: email,
@@ -43,13 +43,13 @@ $('#wishlist-btn').on('click', () => {
 });
 
 $('#wishlist-btn-selected').on('click', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const bookId = urlParams.get('id');
+    const currentPath = window.location.href;
+    const bookId = /\d+/.exec(currentPath)[0];
 
     const email = localStorage.getItem('email');
 
     $.ajax({
-        url: 'removeFromWishlist.php',
+        url: '/wishlist/delete',
         method: 'POST',
         data: {
             email: email,

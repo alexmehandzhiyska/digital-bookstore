@@ -1,13 +1,13 @@
 import Swal from '../node_modules/sweetalert2/src/sweetalert2.js';
 
 $('#add-to-cart-btn').on('click', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const bookId = urlParams.get('id');
+    const currentPath = window.location.href;
+    const bookId = /\d+/.exec(currentPath)[0];
 
     const email = localStorage.getItem('email');
 
     $.ajax({
-        url: 'addToCart.php',
+        url: '/cart',
         method: 'POST',
         data: {
             email: email,
@@ -31,7 +31,7 @@ $('.add-to-cart-btn').on('click', (e) => {
     const email = localStorage.getItem('email');
 
     $.ajax({
-        url: 'addToCart.php',
+        url: '/cart',
         method: 'POST',
         data: {
             email: email,

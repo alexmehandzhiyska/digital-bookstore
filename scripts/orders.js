@@ -13,7 +13,7 @@ $('#order-form').on('submit', e => {
     const email = localStorage.getItem('email');
 
     $.ajax({
-        url: 'orderForm.php',
+        url: '/order',
         method: 'POST',
         data: {
             order: 1,
@@ -31,7 +31,7 @@ $('#order-form').on('submit', e => {
                     title: 'Your order has been placed successfully.',
                 })
                 .then(() => {
-                    window.location = 'home.php';
+                    window.location = '/';
                 });
             } else {
                 Swal.fire({
@@ -39,7 +39,7 @@ $('#order-form').on('submit', e => {
                     title: 'Cannot place your order. Please try again later.',
                 })
                 .then(() => {
-                    window.location = 'orderForm.php';
+                    window.location = '/order';
                 });
             }
         },

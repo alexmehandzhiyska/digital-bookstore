@@ -10,7 +10,7 @@ $('#register-form').on('submit', e => {
     const password = formData.get('password');
 
     $.ajax({
-        url: 'register.php',
+        url: '/register',
         method: 'POST',
         data: {
             login: 1,
@@ -23,14 +23,14 @@ $('#register-form').on('submit', e => {
         success: (response) => {
             if (response.includes('success')) {
                 localStorage.setItem('email', email);
-                window.location = 'home.php';
+                window.location = '/';
             } else {
                 Swal.fire({
                     icon: 'error',
                     title: 'Cannot create your account. Please try again later.',
                 })
                 .then(() => {
-                    window.location = 'register.php';
+                    window.location = '/register';
                 });
             }
         },

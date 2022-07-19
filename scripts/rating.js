@@ -1,15 +1,15 @@
 import Swal from '../node_modules/sweetalert2/src/sweetalert2.js';
 
 $('.rating-star').on('click', (e) => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const bookId = urlParams.get('id');
+    const currentPath = window.location.href;
+    const bookId = /\d+/.exec(currentPath)[0];
 
     const email = localStorage.getItem('email');
 
     const rating = e.target.id;
 
     $.ajax({
-        url: 'addRating.php',
+        url: '/rating',
         method: 'POST',
         data: {
             email: email,
@@ -18,7 +18,7 @@ $('.rating-star').on('click', (e) => {
         },
         success: (response) => {
             if (!response.includes('Error')) {
-                window.location = `bookDetails.php?id=${response}`;
+                window.location = `/books/${response}`;
             } else {
                 Swal.fire({
                     icon: 'error',

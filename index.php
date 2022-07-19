@@ -11,12 +11,12 @@
     <title>Digital Bookstore</title>
 </head>
 <body>
-    <?php include './layout/header.php' ?>
+    <?php include './views/layout/header.php' ?>
     <main>
         <h1>Digital Bookstore</h1>
         <p>Find the PERFECT books for you</p>
-        <a href="bookList.php" type="button" class="btn btn-primary">Browse books</a>
+        <a href="/books" type="button" class="btn btn-primary">Browse books</a>
     </main>
-    <?php include './layout/footer.php' ?>
+    <?php include './views/layout/footer.php' ?>
 </body>
 </html>

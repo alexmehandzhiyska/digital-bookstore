@@ -26,14 +26,14 @@
             <?php 
                 $path = $_SERVER['REQUEST_URI'];
                 preg_match('/\d+/', $path, $id_array);
-                $id = $id_array[0];
+                $book_id = $id_array[0];
 
                 $book = getOne($id);
                 $book_price = number_format($book['price'], 2);
-                $average_rating = getBookRating($id);
+                $average_rating = getBookRating($book_id);
                 
-                $email = $_SESSION['email'];
-                $user_rating = getUserRating($email, $id);
+                $user_id = $_SESSION['user_id'];
+                $user_rating = getUserRating($user_id, $book_id);
             
                 echo 
                 "
@@ -117,7 +117,7 @@
                     </div>
                 ";
                                               
-                $is_wishlisted = checkIfWishlisted($email, $book['book_id']);
+                $is_wishlisted = checkIfWishlisted($user_id, $book['book_id']);
 
                 if ($is_wishlisted === true) {
                     echo "<i class='mx-4 mb-3 fa-solid fa-heart' id='wishlist-btn-selected'></i>";

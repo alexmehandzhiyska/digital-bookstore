@@ -24,7 +24,7 @@
         <section class="d-flex justify-content-around">
             <?php include 'services/bookService.php' ?>
             <?php 
-                $books = getWishListBooks($_SESSION['email']);
+                $books = getWishListBooks($_SESSION['user_id']);
                 
                 for ($i = 0; $i < sizeof($books); $i++) {
                     echo "

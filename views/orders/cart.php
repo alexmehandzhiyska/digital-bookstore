@@ -21,7 +21,7 @@
         <section class="d-flex justify-content-around">
             <?php include 'services/bookService.php' ?>
             <?php 
-                $books = getCartBooks($_SESSION['email']);
+                $books = getCartBooks($_SESSION['user_id']);
                 $total_price = 0;
                 echo "
                         <table class='cart-table table table-striped'>

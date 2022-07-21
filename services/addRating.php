@@ -1,14 +1,14 @@
 <?php
     if (isset($_POST['book_id'])) {
+        $path = $_SERVER['REQUEST_URI'];
+        preg_match('/\d+/', $path, $id_array);
+        $book_id = $id_array[0];
+
         $db = new mysqli('localhost', 'root', '', 'digital-bookstore');
 
         $book_id = $_POST['book_id'];
-        $email = $_POST['email'];
+        $user_id = $_POST['user_id'];
         $rating = $_POST['rating'];
-
-        $data = $db->query("SELECT id, first_name FROM users WHERE email = '$email'");
-        $user = $data->fetch_assoc();
-        $user_id = $user['id'];
 
         $rating_data = $db->query("SELECT rating FROM ratings WHERE user_id = '$user_id' AND book_id = '$book_id'");
 

@@ -71,11 +71,14 @@
             $data = $db->query("SELECT * FROM users WHERE email = '$email' AND password = '$password' ");
             
             if ($data->num_rows > 0) {
+                $user = $data->fetch_assoc();
+
                 $_SESSION['logged_in'] = '1';
                 $_SESSION['email'] = $email;
-                exit('success');
+                $_SESSION['user_id'] = $user['id'];
+                echo 'success' . $user['id'];
             } else {
-                exit($db->error);
+                echo $db->error;
             }
         }
     ?>

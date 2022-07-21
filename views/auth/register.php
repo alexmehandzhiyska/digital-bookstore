@@ -99,12 +99,15 @@
             $data = $db->query("SELECT * FROM users WHERE email = '$email' AND password = '$password' ");
             
             if ($data->num_rows == 0) {
-                $sql_query = "INSERT INTO users (first_name, last_name, email, password) VALUES ('$first_name', '$last_name', '$email', '$password')";
+                $result = $db->query("INSERT INTO users (first_name, last_name, email, password) VALUES ('$first_name', '$last_name', '$email', '$password')");
 
-                if ($db->query($sql_query) === true) {
+                if ($result === true) {
+                    $user_id = $db->insert_id;
+
                     $_SESSION['logged_in'] = '1';
                     $_SESSION['email'] = $email;
-                    echo 'success';
+                    $_SESSION['user_id'] = $user_id;
+                    echo 'success' . $user_id;
                 }
 
                 echo $db->error;

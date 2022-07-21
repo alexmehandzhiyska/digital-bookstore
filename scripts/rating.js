@@ -4,15 +4,15 @@ $('.rating-star').on('click', (e) => {
     const currentPath = window.location.href;
     const bookId = /\d+/.exec(currentPath)[0];
 
-    const email = localStorage.getItem('email');
+    const userId = localStorage.getItem('userId');
 
     const rating = e.target.id;
 
     $.ajax({
-        url: '/rating',
+        url: `/books/${bookId}/rating`,
         method: 'POST',
         data: {
-            email: email,
+            user_id: userId,
             book_id: bookId,
             rating: rating
         },

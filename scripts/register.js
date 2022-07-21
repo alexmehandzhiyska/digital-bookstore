@@ -22,7 +22,16 @@ $('#register-form').on('submit', e => {
         },
         success: (response) => {
             if (response.includes('success')) {
+                const reversedResponse = response
+                .split('')
+                .reverse()
+                .join();
+                
+                const userId = /\d+/.exec(reversedResponse)[0];
+
                 localStorage.setItem('email', email);
+                localStorage.setItem('userId', userId);
+                
                 window.location = '/';
             } else {
                 Swal.fire({

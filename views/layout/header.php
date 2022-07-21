@@ -10,35 +10,35 @@
 
                 <?php 
                     if (isset($_SESSION['logged_in'])) {
-                        echo '
-                            <li class="nav-item mx-3">
-                                <a class="nav-link" href="/books">Browse Books</a>
+                        echo "
+                            <li class='nav-item mx-3'>
+                                <a class='nav-link' href='/books'>Browse Books</a>
                             </li>
 
-                            <li class="nav-item mx-3">
-                                <a class="nav-link" href="/wishlist">Wishlist</a>
+                            <li class='nav-item mx-3'>
+                                <a class='nav-link' href='/wishlist'>Wishlist</a>
                             </li>
 
-                            <li class="nav-item mx-3">
-                                <a class="nav-link" href="/logout">Logout</a>
+                            <li class='nav-item mx-3'>
+                                <a class='nav-link' href='/logout'>Logout</a>
                             </li>
                             
-                            <li class="nav-item mx-3 ">
-                                <a class="nav-link" href="/cart">
-                                    <i class="fa-solid fa-cart-shopping fa-lg my-1"></i>
+                            <li class='nav-item mx-3 '>
+                                <a class='nav-link' href='/cart'>
+                                    <i class='fa-solid fa-cart-shopping fa-lg my-1'></i>
                                 </a>    
                             </li>
-                            ';
+                            ";
                     } else {
-                        echo '
-                            <li class="nav-item mx-3">
-                                <a class="nav-link" href="/login">Login</a>
+                        echo "
+                            <li class='nav-item mx-3'>
+                                <a class='nav-link' href='/login'>Login</a>
                             </li>
             
-                            <li class="nav-item mx-3">
-                                <a class="nav-link" href="/register">Register</a>
+                            <li class='nav-item mx-3'>
+                                <a class='nav-link' href='/register'>Register</a>
                             </li>
-                        ';
+                        ";
                     }
                 ?>
                 

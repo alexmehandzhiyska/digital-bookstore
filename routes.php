@@ -14,7 +14,7 @@ get('/logout', 'views/auth/logout.php');
 get('/books', 'views/books/bookList.php');
 get('/books/$id', 'views/books/bookDetails.php');
 
-post('/rating', 'services/addRating.php');
+post('/books/$id/rating', 'services/addRating.php');
 
 get('/cart', 'views/orders/cart.php');
 post('/cart', 'services/addToCart.php');
@@ -24,6 +24,6 @@ post('/order', 'views/orders/orderForm.php');
 
 get('/wishlist', 'views/wishlist/wishlist.php');
 post('/wishlist', 'services/addToWishlist.php');
-post('/wishlist/delete', 'services/removeFromWishlist.php');
+delete('/wishlist', 'services/removeFromWishlist.php');
 
 any('/404','views/notFound.php');

@@ -4,13 +4,13 @@ $('#add-to-cart-btn').on('click', () => {
     const currentPath = window.location.href;
     const bookId = /\d+/.exec(currentPath)[0];
 
-    const email = localStorage.getItem('email');
+    const userId = localStorage.getItem('userId');
 
     $.ajax({
-        url: '/cart',
+        url: `/cart`,
         method: 'POST',
         data: {
-            email: email,
+            user_id: userId,
             book_id: bookId
         },
         success: (response) => {
@@ -26,15 +26,14 @@ $('#add-to-cart-btn').on('click', () => {
 });
 
 $('.add-to-cart-btn').on('click', (e) => {
+    const userId = localStorage.getItem('userId');
     const bookId = e.target.parentElement.parentElement.querySelector('input').value;
 
-    const email = localStorage.getItem('email');
-
     $.ajax({
-        url: '/cart',
+        url: `/cart`,
         method: 'POST',
         data: {
-            email: email,
+            userId: userId,
             book_id: bookId
         },
         success: (response) => {

@@ -1,21 +1,14 @@
 <?php
-    if (isset($_POST['book_id'])) {
-        $db = new mysqli('localhost', 'root', '', 'digital-bookstore');
+    $db = new mysqli('localhost', 'root', '', 'digital-bookstore');
 
-        $book_id = $_POST['book_id'];
-        $email = $_POST['email'];
+    $book_id = $_GET['book_id'];
+    $user_id = $_SESSION['user_id'];
 
-        $data = $db->query("SELECT id, first_name FROM users WHERE email = '$email'");
-        $user = $data->fetch_assoc();
-        $user_id = $user['id'];
-        
+    $result = $db->query("DELETE FROM  wishlists  WHERE user_id = '$user_id' AND book_id = '$book_id'");
 
-        $result = $db->query("DELETE FROM  wishlists  WHERE user_id = '$user_id' AND book_id = '$book_id'");
-
-        if ($result === true) {
-            echo "success";
-        } else {
-            echo "Error: <br>" . $db->error;
-        }
+    if ($result === true) {
+        echo "success";
+    } else {
+        echo "Error: <br>" . $db->error;
     }
 ?>

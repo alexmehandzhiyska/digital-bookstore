@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../styles/index.css">
-    <link rel="stylesheet" href="../../styles/books.css">
-    <link rel="stylesheet" href="../../styles/cart.css">
+    <link rel="stylesheet" href="../../system/css/index.css">
+    <link rel="stylesheet" href="../../system/css/books.css">
+    <link rel="stylesheet" href="../../system/css/cart.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/ff09b572f7.js" crossorigin="anonymous"></script>
     <title>Digital Bookstore</title>
 </head>
 <body>
-    <?php include './views/layout/header.php' ?>
+    <?php include './header.php' ?>
 
     <main class='d-flex flex-column align-items-center'>
         <h1 class="text-center my-5">Shopping Cart</h1>
 
         <section class="d-flex justify-content-around">
-            <?php include 'services/bookService.php' ?>
+            <?php include 'system/php/bookService.php' ?>
             <?php 
                 $books = getCartBooks($_SESSION['user_id']);
                 $total_price = 0;
@@ -41,7 +41,7 @@
 
                     echo "
                         <tr>
-                            <td><img class='cart-book-img' src='../assets/img/{$books[$i]['book_image']}' /></td>
+                            <td><img class='cart-book-img' src='../../images/{$books[$i]['book_image']}' /></td>
                             <td><a class='title-link' href='./bookDetails.php?id={$books[$i]['id']}'>{$books[$i]['title']}</a></td>
                             <td>{$books[$i]['first_name']} {$books[$i]['last_name']}</td>
                             <td>{$books[$i]['genre']}</td>
@@ -72,6 +72,6 @@
         </section>
     </main>
 
-    <?php include './views/layout/footer.php' ?>
+    <?php include './footer.php' ?>
 </body>
 </html>

@@ -1,4 +1,6 @@
 <?php
+    require('conf/db.conf.php');
+
     if (isset($_POST['book_id'])) {
         $db = new mysqli('localhost', 'root', '', 'digital-bookstore');
 

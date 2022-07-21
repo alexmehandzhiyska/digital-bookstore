@@ -1,4 +1,4 @@
-import Swal from '../node_modules/sweetalert2/src/sweetalert2.js';
+import Swal from '../../node_modules/sweetalert2/src/sweetalert2.js';
 
 $('#login-form').on('submit', e => {
     e.preventDefault();
@@ -16,7 +16,6 @@ $('#login-form').on('submit', e => {
             password: password,
         },
         success: (response) => {
-            console.log(response);
             if (response.includes('success')) {
                 const reversedResponse = response
                 .split('')

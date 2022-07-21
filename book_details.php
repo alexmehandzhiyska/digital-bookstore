@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../styles/index.css">
-    <link rel="stylesheet" href="../../styles/books.css">
-    <link rel="stylesheet" href="../../styles/wishlist.css">
-    <link rel="stylesheet" href="../../styles/rating.css">
+    <link rel="stylesheet" href="../../system/css/index.css">
+    <link rel="stylesheet" href="../../system/css/books.css">
+    <link rel="stylesheet" href="../../system/css/wishlist.css">
+    <link rel="stylesheet" href="../../system/css/rating.css">
     <link rel="stylesheet" href="../../node_modules/sweetalert2/dist/sweetalert2.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/ff09b572f7.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="../../scripts/wishlist.js" type="module" defer></script>
-    <script src="../../scripts/rating.js" type="module" defer></script>
-    <script src="../../scripts/cart.js" type="module" defer></script>
+    <script src="../../system/js/wishlist.js" type="module" defer></script>
+    <script src="../../system/js/rating.js" type="module" defer></script>
+    <script src="../../system/js/cart.js" type="module" defer></script>
     <title>Digital Bookstore</title>
 </head>
 <body>
-    <?php include './views/layout/header.php' ?>
+    <?php include './header.php' ?>
 
     <main>
         <section class="d-flex justify-content-around">
-            <?php include 'services/bookService.php' ?>
+            <?php include 'system/php/bookService.php' ?>
             <?php 
                 $path = $_SERVER['REQUEST_URI'];
                 preg_match('/\d+/', $path, $id_array);
@@ -41,7 +41,7 @@
                         <input type='hidden' value={$book['book_id']} />
 
                         <section class='px-5'>
-                            <img src='../assets/img/{$book['book_image']}' alt='Book image' class='details-book-img' />
+                            <img src='../../images/{$book['book_image']}' alt='Book image' class='details-book-img' />
                         </section>
 
                         <section class='px-5'>
@@ -131,6 +131,6 @@
         </section>
     </main>
 
-    <?php include './views/layout/footer.php' ?>
+    <?php include './footer.php' ?>
 </body>
 </html>

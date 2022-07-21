@@ -1,4 +1,4 @@
-import Swal from '../node_modules/sweetalert2/src/sweetalert2.js';
+import Swal from '../../node_modules/sweetalert2/src/sweetalert2.js';
 
 $('.rating-star').on('click', (e) => {
     const currentPath = window.location.href;

@@ -1,4 +1,6 @@
 <?php 
+    require('conf/db.conf.php');
+
     function getAll() {
         $db = new mysqli('localhost', 'root', '', 'digital-bookstore');
         $data = $db->query('SELECT books.id AS book_id, title, pages, books.image AS book_image, price, first_name, last_name FROM books JOIN authors ON books.author_id = authors.id');

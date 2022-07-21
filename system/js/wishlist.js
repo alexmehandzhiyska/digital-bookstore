@@ -2,8 +2,6 @@ $('.remove-book-btn').on('click', (e) => {
     const wrapperEl = e.target.parentElement.parentElement;
     const bookId = wrapperEl.querySelector('input').value;
 
-    const userId = localStorage.getItem('userId');
-
     $.ajax({
         url: `/wishlist?&book_id=${bookId}`,
         method: 'DELETE',

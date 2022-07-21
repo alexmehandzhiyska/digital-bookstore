@@ -1,4 +1,4 @@
-import Swal from '../node_modules/sweetalert2/src/sweetalert2.js';
+import Swal from '../../node_modules/sweetalert2/src/sweetalert2.js';
 
 $('#register-form').on('submit', e => {
     e.preventDefault();

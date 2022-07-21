@@ -1,4 +1,6 @@
 <?php
+    require('conf/db.conf.php');
+
     $db = new mysqli('localhost', 'root', '', 'digital-bookstore');
 
     $book_id = $_GET['book_id'];

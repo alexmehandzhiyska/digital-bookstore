@@ -1,4 +1,4 @@
-import Swal from '../node_modules/sweetalert2/src/sweetalert2.js';
+import Swal from '../../node_modules/sweetalert2/src/sweetalert2.js';
 
 $('#add-to-cart-btn').on('click', () => {
     const currentPath = window.location.href;
@@ -33,7 +33,7 @@ $('.add-to-cart-btn').on('click', (e) => {
         url: `/cart`,
         method: 'POST',
         data: {
-            userId: userId,
+            user_id: userId,
             book_id: bookId
         },
         success: (response) => {

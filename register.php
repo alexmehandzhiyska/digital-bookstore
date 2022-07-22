@@ -87,33 +87,31 @@
     <?php include './footer.php' ?>
 
     <?php
+        require('./conf/db.conf.php');
+        require('./classes/User.php');
+
         if (isset($_POST['login'])) {
-            $db = new mysqli('localhost', 'root', '', 'digital-bookstore');
+            $first_name = $_POST['first_name'];
+            $last_name = $_POST['last_name'];
+            $email = $_POST['email'];
+            $password = hash('sha1', $_POST['password']);
+            $repeat_password = $_POST['repeat_password'];
+
+            $user_class = new User($pdo_conn);
             
-            $first_name = $db->real_escape_string($_POST['first_name']);
-            $last_name = $db->real_escape_string($_POST['last_name']);
-            $email = $db->real_escape_string($_POST['email']);
-            $password = hash('sha1', $db->real_escape_string($_POST['password']));
-            $repeat_password = $db->real_escape_string($_POST['repeat_password']);
+            $result = $user_class->registerUser($first_name, $last_name, $email, $password);
 
-            $data = $db->query("SELECT * FROM users WHERE email = '$email' AND password = '$password' ");
-            
-            if ($data->num_rows == 0) {
-                $result = $db->query("INSERT INTO users (first_name, last_name, email, password) VALUES ('$first_name', '$last_name', '$email', '$password')");
+            if ($result) {
+                $user_id = $result;
 
-                if ($result === true) {
-                    $user_id = $db->insert_id;
-
-                    $_SESSION['logged_in'] = '1';
-                    $_SESSION['email'] = $email;
-                    $_SESSION['user_id'] = $user_id;
-                    echo 'success' . $user_id;
-                }
-
-                echo $db->error;
+                $_SESSION['logged_in'] = '1';
+                $_SESSION['email'] = $email;
+                $_SESSION['user_id'] = $user_id;
+                echo 'success' . $user_id;
+            } else {
+                echo $result;
             }
 
-            echo $email . $password;
         }
     ?>
 </body>

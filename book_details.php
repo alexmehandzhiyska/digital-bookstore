@@ -24,16 +24,23 @@
         <section class="d-flex justify-content-around">
             <?php include 'system/php/bookService.php' ?>
             <?php 
+                require('./conf/db.conf.php');
+                require('./classes/Book.class.php');
+                require('./classes/Rating.class.php');
+                require('./classes/Wishlist.class.php');
+
+                $book_class = new Book($pdo_conn);
+                $rating_class = new Rating($pdo_conn);
+                $wishlist_class = new Wishlist($pdo_conn);
+
                 $path = $_SERVER['REQUEST_URI'];
                 preg_match('/\d+/', $path, $id_array);
                 $book_id = $id_array[0];
 
-                $book = getOne($id);
-                $book_price = number_format($book['price'], 2);
-                $average_rating = getBookRating($book_id);
+                $book = $book_class->getById($id);
                 
-                $user_id = $_SESSION['user_id'];
-                $user_rating = getUserRating($user_id, $book_id);
+                $average_rating = $rating_class->getAverage($book_id);
+                $user_rating = $rating_class->getUserRating($book_id);
             
                 echo 
                 "
@@ -71,6 +78,8 @@
                 if ($user_rating) {
                     echo "<p class='user-rating'>Your rating: {$user_rating}</p>";
                 }
+
+                $book_price = number_format($book['price'], 2);
 
                 echo
                 "
@@ -117,7 +126,7 @@
                     </div>
                 ";
                                               
-                $is_wishlisted = checkIfWishlisted($user_id, $book['book_id']);
+                $is_wishlisted = $wishlist_class->checkIfWishlisted($book['book_id']);
 
                 if ($is_wishlisted === true) {
                     echo "<i class='mx-4 mb-3 fa-solid fa-heart' id='wishlist-btn-selected'></i>";

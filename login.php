@@ -63,22 +63,22 @@
 
     <?php
         require('./conf/db.conf.php');
+        require('./classes/User.php');
         
         if (isset($_POST['login'])) {
-            $email = $db->real_escape_string($_POST['email']);
-            $password = hash('sha1', $db->real_escape_string($_POST['password']));
+            $email = $_POST['email'];
+            $password = hash('sha1', $_POST['password']);
 
-            $data = $db->query("SELECT * FROM users WHERE email = '$email' AND password = '$password' ");
+            $user_class = new User($pdo_conn);
+            $user = $user_class->checkUserExists($email, $password);
             
-            if ($data->num_rows > 0) {
-                $user = $data->fetch_assoc();
-
+            if ($user) {
                 $_SESSION['logged_in'] = '1';
                 $_SESSION['email'] = $email;
                 $_SESSION['user_id'] = $user['id'];
                 echo 'success' . $user['id'];
             } else {
-                echo $db->error;
+                echo $user_exists;
             }
         }
     ?>

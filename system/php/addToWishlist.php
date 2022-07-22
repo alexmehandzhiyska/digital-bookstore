@@ -1,18 +1,17 @@
 <?php
     require('conf/db.conf.php');
+    require('./classes/Utils.class.php');
+    require('./classes/Wishlist.class.php');
+
+    $wishlist_class = new Wishlist($pdo_conn);
 
     if (isset($_POST['book_id'])) {
-        $db = new mysqli('localhost', 'root', '', 'digital-bookstore');
+        $result = $wishlist_class->addToWishlist($_POST['book_id']);
 
-        $book_id = $_POST['book_id'];
-        $user_id = $_POST['user_id'];
-
-        $result = $db->query("INSERT INTO wishlists (user_id, book_id) VALUES ('$user_id', '$book_id')");
-
-        if ($result === true) {
-            echo "success";
-        } else {
-            echo "Error: <br>" . $db->error;
+        if ($result) {
+            echo 'success';
         }
+        
+        echo null;
     }
 ?>

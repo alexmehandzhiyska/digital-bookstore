@@ -18,13 +18,10 @@ $('#wishlist-btn').on('click', () => {
     const currentPath = window.location.href;
     const bookId = /\d+/.exec(currentPath)[0];
 
-    const userId = localStorage.getItem('userId');
-
     $.ajax({
         url: '/wishlist',
         method: 'POST',
         data: {
-            user_id: userId,
             book_id: bookId
         },
         success: (response) => {

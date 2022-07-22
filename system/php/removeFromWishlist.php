@@ -1,12 +1,12 @@
 <?php
     require('conf/db.conf.php');
-
-    $db = new mysqli('localhost', 'root', '', 'digital-bookstore');
+    require('./classes/Utils.class.php');
+    require('./classes/Wishlist.class.php');
+    
+    $wishlist_class = new Wishlist($pdo_conn);
 
     $book_id = $_GET['book_id'];
-    $user_id = $_SESSION['user_id'];
-
-    $result = $db->query("DELETE FROM  wishlists  WHERE user_id = '$user_id' AND book_id = '$book_id'");
+    $result = $wishlist_class->removeFromWishlist($book_id);
 
     if ($result === true) {
         echo "success";

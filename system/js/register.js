@@ -8,6 +8,7 @@ $('#register-form').on('submit', e => {
     const lastName = formData.get('last_name');
     const email = formData.get('email');
     const password = formData.get('password');
+    const repeatPassword = formData.get('repeat_password');
 
     $.ajax({
         url: '/register',
@@ -18,6 +19,7 @@ $('#register-form').on('submit', e => {
             last_name: lastName,
             email: email,
             password: password,
+            repeat_password: repeatPassword,
             is_admin: false
         },
         success: (response) => {

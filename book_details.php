@@ -22,9 +22,9 @@
 
     <main>
         <section class="d-flex justify-content-around">
-            <?php include 'system/php/bookService.php' ?>
             <?php 
                 require('./conf/db.conf.php');
+                require('./classes/Utils.class.php');
                 require('./classes/Book.class.php');
                 require('./classes/Rating.class.php');
                 require('./classes/Wishlist.class.php');
@@ -33,6 +33,7 @@
                 $rating_class = new Rating($pdo_conn);
                 $wishlist_class = new Wishlist($pdo_conn);
 
+                //Get book id from uri
                 $path = $_SERVER['REQUEST_URI'];
                 preg_match('/\d+/', $path, $id_array);
                 $book_id = $id_array[0];
@@ -56,6 +57,7 @@
                             <div class='rating my-1'>
                 ";
 
+                // Display rating stars in correct order
                 for ($i = 1; $i <= 5; $i++) {
                     $star_id = 6 - $i;
                     
@@ -75,6 +77,7 @@
                     
                 }
 
+                //Display user rating if they have voted
                 if ($user_rating) {
                     echo "<p class='user-rating'>Your rating: {$user_rating}</p>";
                 }

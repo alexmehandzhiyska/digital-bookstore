@@ -1,6 +1,4 @@
 <?php
-require('Utils.class.php');
-
 class Book extends Utils {
 
     private $_pdo = null;

@@ -1,25 +1,19 @@
 <?php
     require('conf/db.conf.php');
-
+    require('./classes/Utils.class.php');
+    require('./classes/Rating.class.php');
+    
     if (isset($_POST['book_id'])) {
-        $db = new mysqli('localhost', 'root', '', 'digital-bookstore');
-
         $book_id = $_POST['book_id'];
-        $user_id = $_POST['user_id'];
         $rating = $_POST['rating'];
 
-        $rating_data = $db->query("SELECT rating FROM ratings WHERE user_id = '$user_id' AND book_id = '$book_id'");
+        $rating_class = new Rating($pdo_conn);
+        $result = $rating_class->addRating($book_id, $rating);
 
-        if ($rating_data->num_rows > 0) {
+        if ($result === true) {
             echo $book_id;
         } else {
-            $result = $db->query("INSERT INTO ratings (user_id, book_id, rating) VALUES ('$user_id', '$book_id', '$rating')");
-
-            if ($result === true) {
-                echo $book_id;
-            } else {
-                echo "Error: <br>" . $db->error;
-            }
+            echo 'error';
         }
     }
 ?>

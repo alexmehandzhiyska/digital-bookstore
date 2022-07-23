@@ -22,7 +22,6 @@
         <h1 class="text-center my-5">Wishlist</h1>
 
         <section class="d-flex justify-content-around">
-            <?php include 'system/php/bookService.php' ?>
             <?php 
                 require('./conf/db.conf.php');
                 require('./classes/Utils.class.php');
@@ -30,26 +29,30 @@
                 
                 $wishlist_class = new Wishlist($pdo_conn);
                 $books = $wishlist_class->getByUser($_SESSION['user_id']);
-                
-                for ($i = 0; $i < sizeof($books); $i++) {
-                    echo "
-                        <article class='book d-flex flex-column align-items-center'>
-                            <input type='hidden' value={$books[$i]['book_id']} />
-                            <h4 class='mt-4'><a class='title-link' href='/books/{$books[$i]['book_id']}'>{$books[$i]['title']}</a></h4>
-                            <p class='mb-4'>{$books[$i]['first_name']} {$books[$i]['last_name']}</p>
-                            <img src='../../images/{$books[$i]['book_image']}' alt='Book image' class='book-img' />
-                            <h5 class='my-2'>{$books[$i]['price']} lv.</h5>
 
-                            <div class='add-to-cart-btn btn btn-primary mb-3'>
-                                <i class='fa-solid fa-cart-shopping mx-2'></i>
-                                <span>Add to card</span>
-                            </div>
-
-                            <div class='btn btn-outline-primary mb-3 remove-book-btn'>
-                                <span>Remove from wishlist</span>
-                            </div>
-                        </article>
-                    ";
+                if (sizeof($books) > 0) {
+                    for ($i = 0; $i < sizeof($books); $i++) {
+                        echo "
+                            <article class='book d-flex flex-column align-items-center'>
+                                <input type='hidden' value={$books[$i]['book_id']} />
+                                <h4 class='mt-4'><a class='title-link' href='/books/{$books[$i]['book_id']}'>{$books[$i]['title']}</a></h4>
+                                <p class='mb-4'>{$books[$i]['first_name']} {$books[$i]['last_name']}</p>
+                                <img src='../../images/{$books[$i]['book_image']}' alt='Book image' class='book-img' />
+                                <h5 class='my-2'>{$books[$i]['price']} lv.</h5>
+    
+                                <div class='add-to-cart-btn btn btn-primary mb-3'>
+                                    <i class='fa-solid fa-cart-shopping mx-2'></i>
+                                    <span>Add to card</span>
+                                </div>
+    
+                                <div class='btn btn-outline-primary mb-3 remove-book-btn'>
+                                    <span>Remove from wishlist</span>
+                                </div>
+                            </article>
+                        ";
+                    }
+                } else {
+                    echo "<p>You have not added any books to your wishlist yet!";
                 }
             ?>
         </section>

@@ -52,8 +52,26 @@ class Rating extends Utils {
         return null;
     }
 
-    public function getUserRating($user_id)
-    {
+    public function getUserRating($user_id) {
         return $this->_get_user_rating($user_id);
+    }
+
+    private function _add_rating($book_id, $rating) {
+        $user_id = $_SESSION['user_id'];
+
+        $sql = "INSERT INTO ratings (user_id, book_id, rating) VALUES ('$user_id', '$book_id', '$rating');";
+
+        $stmt = $this->_pdo->prepare($sql);
+        $result = $stmt->execute();
+
+        if ($result) {
+            return true;
+        } 
+
+        return false;
+    }
+
+    public function addRating($book_id, $rating) {
+        return $this->_add_rating($book_id, $rating);
     }
 }

@@ -62,43 +62,29 @@
     <?php include './footer.php' ?>
 
     <?php
+        require('./conf/db.conf.php');
+        require('./classes/Utils.class.php');
+        require('./classes/Order.class.php');
+        require('./classes/Cart.class.php');
+
+        $order_class = new Order($pdo_conn);
+        $cart_class = new Cart($pdo_conn);
+
         if (isset($_POST['order'])) {
-            $db = new mysqli('localhost', 'root', '', 'digital-bookstore');
-            
-            $first_name = $db->real_escape_string($_POST['first_name']);
-            $last_name = $db->real_escape_string($_POST['last_name']);
-            $address = $db->real_escape_string($_POST['address']);
-            $phone = $db->real_escape_string($_POST['phone']);
-            $additional_information = $db->real_escape_string($_POST['additional_info']);
+            $first_name = $_POST['first_name'];
+            $last_name = $_POST['last_name'];
+            $address = $_POST['address'];
+            $phone = $_POST['phone'];
+            $additional_information = $_POST['additional_info'];
 
-            $email = $db->real_escape_string($_POST['email']);
+            $order_result = $order_class->addOrder($first_name, $last_name, $address, $phone, $additional_information);
+            $order_items_result = $order_class->addOrderItems($order_result);
+            $cart_result = $cart_class->resetCart();
 
-            $user_data = $db->query("SELECT id, first_name FROM users WHERE email = '$email'");
-            $user = $user_data->fetch_assoc();
-            $user_id = $user['id'];
-
-            $order_result = $db->query("INSERT INTO orders (user_id, first_name, last_name, address, phone, additional_information) VALUES ('$user_id', '$first_name', '$last_name', '$address', '$phone', '$additional_information')");
-
-            if ($order_result === true) {
-                $order_id = $db->insert_id;
-            } else {
-                echo $db->error;
-                return;
-            }
-
-            $order_items_data = $db->query("SELECT book_id FROM cart_books WHERE user_id = '$user_id'");
-
-            while($row = mysqli_fetch_array($order_items_data)) {
-                $book_id = $row['book_id'];
-                $order_items_result = $db->query("INSERT INTO order_items (book_id, order_id) VALUES ($book_id, $order_id)");
-            }
-
-            $cart_data = $db->query("DELETE FROM cart_books WHERE user_id = $user_id");
-            
-            if ($cart_data === true) {
+            if ($order_result && $order_items_result && $cart_result) {
                 echo 'success';
             } else {
-                echo $db->error;
+                echo 'error';
             }
         }
     ?>

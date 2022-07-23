@@ -2,7 +2,7 @@
     $host = "localhost";
     $username = "root";
     $password = "";
-    $name = "digital-bookstore";
+    $name = "digital-bookstore-test";
 
     $dsn = "mysql:host=$host;dbname=$name;";
     $options = [

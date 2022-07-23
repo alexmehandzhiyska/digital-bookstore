@@ -32,13 +32,16 @@
 
                 if (sizeof($books) > 0) {
                     for ($i = 0; $i < sizeof($books); $i++) {
+                        $book = $books[$i];
+                        $book_price = number_format($book['price'], 2);
+
                         echo "
                             <article class='book d-flex flex-column align-items-center'>
-                                <input type='hidden' value={$books[$i]['book_id']} />
-                                <h4 class='mt-4'><a class='title-link' href='/books/{$books[$i]['book_id']}'>{$books[$i]['title']}</a></h4>
-                                <p class='mb-4'>{$books[$i]['first_name']} {$books[$i]['last_name']}</p>
-                                <img src='../../images/{$books[$i]['book_image']}' alt='Book image' class='book-img' />
-                                <h5 class='my-2'>{$books[$i]['price']} lv.</h5>
+                                <input type='hidden' value={$book['book_id']} />
+                                <h4 class='mt-4'><a class='title-link' href='/books/{$book['book_id']}'>{$book['title']}</a></h4>
+                                <p class='mb-4'>{$book['first_name']} {$book['last_name']}</p>
+                                <img src='../../images/{$book['book_image']}' alt='Book image' class='book-img' />
+                                <h5 class='my-2'>{$book_price} lv.</h5>
     
                                 <div class='add-to-cart-btn btn btn-primary mb-3'>
                                     <i class='fa-solid fa-cart-shopping mx-2'></i>

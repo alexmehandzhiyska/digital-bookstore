@@ -63,11 +63,12 @@
 
     <?php
         require('./conf/db.conf.php');
-        require('./classes/User.php');
+        require('./classes/User.class.php');
         
         if (isset($_POST['login'])) {
             $email = $_POST['email'];
             $password = hash('sha1', $_POST['password']);
+            // echo $password;
 
             $user_class = new User($pdo_conn);
             $user = $user_class->checkUserExists($email, $password);

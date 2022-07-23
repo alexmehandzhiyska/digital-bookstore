@@ -43,15 +43,17 @@
                         <tbody>";
             
                     for ($i = 0; $i < sizeof($books); $i++) {
-                        $total_price += $books[$i]['price'];
+                        $book = $books[$i];
+                        $total_price += $book['price'];
+                        $book_price = number_format($book['price'], 2);
 
                         echo "
                             <tr>
-                                <td><img class='cart-book-img' src='../../images/{$books[$i]['book_image']}' /></td>
-                                <td><a class='title-link' href='./bookDetails.php?id={$books[$i]['book_id']}'>{$books[$i]['title']}</a></td>
-                                <td>{$books[$i]['first_name']} {$books[$i]['last_name']}</td>
-                                <td>{$books[$i]['genre']}</td>
-                                <td>{$books[$i]['price']} lv.</td>
+                                <td><img class='cart-book-img' src='../../images/{$book['book_image']}' /></td>
+                                <td><a class='title-link' href='./bookDetails.php?id={$book['book_id']}'>{$book['title']}</a></td>
+                                <td>{$book['first_name']} {$book['last_name']}</td>
+                                <td>{$book['genre']}</td>
+                                <td>{$book_price} lv.</td>
                             </tr>
                         ";
                     }

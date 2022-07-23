@@ -14,6 +14,8 @@ get('/logout', 'logout.php');
 get('/books', 'book_list.php');
 get('/books/$id', 'book_details.php');
 
+get('/authors/$id', 'author.php');
+
 post('/books/$id/rating', 'system/php/addRating.php');
 
 get('/cart', 'cart.php');

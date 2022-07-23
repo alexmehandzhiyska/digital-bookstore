@@ -50,7 +50,7 @@
                         echo "
                             <tr>
                                 <td><img class='cart-book-img' src='../../images/{$book['book_image']}' /></td>
-                                <td><a class='title-link' href='./bookDetails.php?id={$book['book_id']}'>{$book['title']}</a></td>
+                                <td><a class='link' href='./bookDetails.php?id={$book['book_id']}'>{$book['title']}</a></td>
                                 <td>{$book['first_name']} {$book['last_name']}</td>
                                 <td>{$book['genre']}</td>
                                 <td>{$book_price} lv.</td>

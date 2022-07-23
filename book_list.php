@@ -19,7 +19,7 @@
     <main>
         <h1 class="text-center my-5">All Books</h1>
 
-        <section class="d-flex justify-content-around">
+        <section class="books d-flex justify-content-between">
             <?php 
                 require('./conf/db.conf.php');
                 require('./classes/Utils.class.php');
@@ -37,7 +37,7 @@
                         echo "
                             <article class='book d-flex flex-column align-items-center'>
                                 <input type='hidden' value='{$book['book_id']}' />
-                                <h4 class='mt-4'><a class='title-link' href='/books/{$book['book_id']}'>{$book['title']}</a></h4>
+                                <h4 class='mt-4'><a class='link' href='/books/{$book['book_id']}'>{$book['title']}</a></h4>
                                 <p class='mb-4'>{$book['first_name']} {$book['last_name']}</p>
                                 <img src='../../images/{$book['book_image']}' alt='Book image' class='book-img' />
                                 <h5 class='my-2'>{$book_price} lv.</h5>

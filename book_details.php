@@ -38,7 +38,7 @@
                 preg_match('/\d+/', $path, $id_array);
                 $book_id = $id_array[0];
 
-                $book = $book_class->getById($id);
+                $book = $book_class->getById($book_id);
                 
                 $average_rating = $rating_class->getAverage($book_id);
                 $user_rating = $rating_class->getUserRating($book_id);
@@ -92,7 +92,7 @@
                     <table class='table'>
                         <tr>
                             <td>Author</td>
-                            <td>{$book['first_name']} {$book['last_name']}</td>
+                            <td><a href='/authors/{$book['author_id']}' class='link'><u>{$book['first_name']} {$book['last_name']}</u></a></td>
                         </tr>
 
                         <tr>

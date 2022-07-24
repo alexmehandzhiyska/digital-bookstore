@@ -8,11 +8,15 @@ class Author extends Utils {
     }
 
     private function _get_by_id($id) {
-        $sql = "SELECT * FROM books JOIN authors ON books.author_id = authors.id WHERE authors.id = '$id'";
+        $sql = "SELECT * FROM books JOIN authors ON authors.id = books.author_id WHERE authors.id = '$id';";
 
-        $stmt = $this->_pdo->prepare($sql);
-        $stmt->execute();
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        try {
+            $stmt = $this->_pdo->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch(Exception $e) {
+            $data = null;
+        }
 
         return $data;
     }

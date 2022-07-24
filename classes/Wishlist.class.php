@@ -14,11 +14,11 @@ class Wishlist extends Utils {
             $stmt = $this->_pdo->prepare($sql);
             $stmt->execute();
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            return $data;
         } catch (Exception $error) {
-            return 'error';
+            $data = null;
         }
+
+        return $data;
     }
 
     public function getByUser($user_id) {
@@ -27,16 +27,21 @@ class Wishlist extends Utils {
 
     private function _check_if_wishlisted($book_id) {
         $user_id = $_SESSION['user_id'];
-        $sql = "SELECT books.id FROM books WHERE books.id IN (SELECT book_id FROM wishlists WHERE user_id = '$user_id' AND book_id = '$book_id')";
+        $sql = "SELECT books.id FROM books WHERE books.id IN (SELECT book_id FROM wishlists WHERE user_id = '$user_id' AND book_id = '$book_id');";
 
-        $stmt = $this->_pdo->prepare($sql);
-        $stmt->execute();
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        try {
+            $stmt = $this->_pdo->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+            if ($data) {
+                return true;
+            }
 
-        if ($row) {
-            return true;
+            return null;
+        } catch (Exception $e) {
+            return null;
         }
-        return false;
     }
 
     public function checkIfWishlisted($book_id) {
@@ -47,12 +52,16 @@ class Wishlist extends Utils {
         $user_id = $_SESSION['user_id'];
         $sql = "INSERT INTO wishlists (user_id, book_id) VALUES ('$user_id', '$book_id');";
 
-        $stmt = $this->_pdo->prepare($sql);
-        $stmt->execute();
+        try {
+            $stmt = $this->_pdo->prepare($sql);
+            $stmt->execute();
+    
+            $data = $this->_pdo->lastInsertId();
+        } catch (Exception $e) {
+            $data = null;
+        }
 
-        $record_id = $this->_pdo->lastInsertId();
-
-        return $record_id;
+        return $data;
     }
 
     public function addToWishlist($book_id) {
@@ -63,14 +72,18 @@ class Wishlist extends Utils {
         $user_id = $_SESSION['user_id'];
         $sql = "DELETE FROM  wishlists  WHERE user_id = '$user_id' AND book_id = '$book_id';";
 
-        $stmt = $this->_pdo->prepare($sql);
-        $run = $stmt->execute();
-
-        if ($run) {
-            return true;
+        try {
+            $stmt = $this->_pdo->prepare($sql);
+            $data = $stmt->execute();
+    
+            if ($data) {
+                return true;
+            }
+    
+            return null;
+        } catch (Exception $e) {
+            return null;
         }
-
-        return false;
     }
 
     public function removeFromWishlist($book_id) {

@@ -8,7 +8,7 @@ class Rating extends Utils {
     }
 
     private function _get_average($book_id) {
-        $sql = "SELECT rating FROM ratings WHERE book_id = $book_id";
+        $sql = "SELECT rating FROM ratings WHERE book_id = $book_id;";
         
         try {
             $stmt = $this->_pdo->prepare($sql);
@@ -28,8 +28,8 @@ class Rating extends Utils {
             } else {
                 return 0;
             }
-        } catch (Exception $error) {
-            return 'error';
+        } catch (Exception $e) {
+            return null;
         }
     }
 
@@ -39,17 +39,21 @@ class Rating extends Utils {
 
     private function _get_user_rating($book_id) {
         $user_id = $_SESSION['user_id'];
-        $sql = "SELECT rating FROM ratings WHERE user_id = '$user_id' AND book_id = '$book_id'";
+        $sql = "SELECT rating FROM ratings WHERE user_id = '$user_id' AND book_id = '$book_id';";
 
-        $stmt = $this->_pdo->prepare($sql);
-        $stmt->execute();
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($row) {
-            return $row['rating'];
+        try {
+            $stmt = $this->_pdo->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+            if ($data) {
+                return $data['rating'];
+            }
+            
+            return null;
+        } catch (Exception $e) {
+            return null;
         }
-
-        return null;
     }
 
     public function getUserRating($user_id) {
@@ -61,14 +65,14 @@ class Rating extends Utils {
 
         $sql = "INSERT INTO ratings (user_id, book_id, rating) VALUES ('$user_id', '$book_id', '$rating');";
 
-        $stmt = $this->_pdo->prepare($sql);
-        $result = $stmt->execute();
+        try {
+            $stmt = $this->_pdo->prepare($sql);
+            $data = $stmt->execute();
+        } catch (Exception $e) {
+            $data = null;
+        }
 
-        if ($result) {
-            return true;
-        } 
-
-        return false;
+        return $data;
     }
 
     public function addRating($book_id, $rating) {

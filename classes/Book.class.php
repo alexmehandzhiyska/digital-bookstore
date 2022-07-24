@@ -14,8 +14,8 @@ class Book extends Utils {
             $stmt = $this->_pdo->prepare($sql);
             $stmt->execute();
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (Exception $error) {
-            $data = 'error';
+        } catch (Exception $e) {
+            $data = null;
         }
         
         return $data;
@@ -28,11 +28,15 @@ class Book extends Utils {
     private function _get_by_id($id) {
         $sql = "SELECT books.id AS book_id, authors.id AS author_id, title, description, genre, year_released, pages, ISBN, language, books.image AS book_image, price, first_name, last_name FROM books JOIN authors ON books.author_id = authors.id WHERE books.id = '$id';";
 
-        $stmt = $this->_pdo->prepare($sql);
-        $stmt->execute();
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        return $row;
+        try {
+            $stmt = $this->_pdo->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            $data = null;
+        }
+        
+        return $data;
     }
 
     public function getById($id) {
@@ -42,10 +46,14 @@ class Book extends Utils {
      private function _get_by_author($author_id) {
         $sql = "SELECT books.id AS book_id, authors.id AS author_id, title, books.image AS book_image FROM books JOIN authors ON books.author_id = authors.id WHERE authors.id = '$author_id';";
 
-        $stmt = $this->_pdo->prepare($sql);
-        $stmt->execute();
-        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        try {
+            $stmt = $this->_pdo->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            $data = null;
+        }
+        
         return $data;
     }
 

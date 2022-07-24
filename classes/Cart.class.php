@@ -14,11 +14,11 @@ class Cart extends Utils {
             $stmt = $this->_pdo->prepare($sql);
             $stmt->execute();
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            return $data;
-        } catch (Exception $error) {
-            return 'error';
+        } catch (Exception $e) {
+            $data = null;
         }
+
+        return $data;
     }
 
     public function getByUser($book_id) {
@@ -29,12 +29,15 @@ class Cart extends Utils {
         $user_id = $_SESSION['user_id'];
         $sql = "INSERT INTO cart_books (user_id, book_id) VALUES ('$user_id', '$book_id');";
 
-        $stmt = $this->_pdo->prepare($sql);
-        $stmt->execute();
+        try {
+            $stmt = $this->_pdo->prepare($sql);
+            $stmt->execute();
+            $data = $this->_pdo->lastInsertId();
+        } catch (Exception $e) {
+            $data = null;
+        }
 
-        $record_id = $this->_pdo->lastInsertId();
-
-        return $record_id;
+        return $data;
     }
 
     public function addToCart($book_id) {
@@ -45,10 +48,14 @@ class Cart extends Utils {
         $user_id = $_SESSION['user_id'];
         $sql = "DELETE FROM cart_books WHERE user_id = $user_id;";
 
-        $stmt = $this->_pdo->prepare($sql);
-        $result = $stmt->execute();
-
-        return $result;
+        try {
+            $stmt = $this->_pdo->prepare($sql);
+            $data = $stmt->execute();
+        } catch (Exception $e) {
+            $data = null;
+        }
+        
+        return $data;
     }
 
     public function resetCart() {

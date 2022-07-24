@@ -90,7 +90,7 @@
 
     <?php
         require('./conf/db.conf.php');
-        require('./classes/User.php');
+        require('./classes/User.class.php');
 
         if (isset($_POST['login'])) {
             $first_name = $_POST['first_name'];

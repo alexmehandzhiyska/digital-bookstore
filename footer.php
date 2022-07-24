@@ -22,10 +22,10 @@
             Useful links
           </h6>
           <p>
-            <a href="home.php" class="text-reset">Home</a>
+            <a href="/" class="text-reset">Home</a>
           </p>
           <p>
-            <a href="bookList.php" class="text-reset">Books</a>
+            <a href="/books" class="text-reset">Books</a>
           </p>
         </div>
         <!-- Grid column -->

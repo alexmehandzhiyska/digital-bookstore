@@ -23,31 +23,31 @@
             <div class="row mb-4">
                 <div class="col">
                 <div class="form-outline">
-                    <input type="text" id="first_name" name="first_name" class="form-control" />
                     <label class="form-label" for="first_name">First name</label>
+                    <input type="text" id="first_name" name="first_name" class="form-control" />
                 </div>
                 </div>
                 <div class="col">
                 <div class="form-outline">
-                    <input type="text" id="last_name" name="last_name" class="form-control" />
                     <label class="form-label" for="last_name">Last name</label>
+                    <input type="text" id="last_name" name="last_name" class="form-control" />
                 </div>
                 </div>
             </div>
 
             <div class="form-outline mb-4">
-                <input type="text" id="address" name="address" class="form-control" />
                 <label class="form-label" for="address">Address</label>
+                <input type="text" id="address" name="address" class="form-control" />
             </div>
 
             <div class="form-outline mb-4">
-                <input type="number" id="phone" name="phone" class="form-control" />
                 <label class="form-label" for="phone">Phone</label>
+                <input type="number" id="phone" name="phone" class="form-control" />
             </div>
 
             <div class="form-outline mb-4">
-                <textarea class="form-control" id="additional_info" name="additional_info" rows="4"></textarea>
                 <label class="form-label" for="additional_info">Additional information</label>
+                <textarea class="form-control" id="additional_info" name="additional_info" rows="4"></textarea>
             </div>
 
             <div class="d-flex flex-column align-items-center justify-content-center">

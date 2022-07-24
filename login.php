@@ -44,6 +44,8 @@
                                                 </div>
                                             </div>
 
+                                            <p class="error-message"></p>
+
                                             <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                                 <input type="submit" class="btn btn-primary btn-lg" value="Login" />
                                             </div>
@@ -68,7 +70,6 @@
         if (isset($_POST['login'])) {
             $email = $_POST['email'];
             $password = hash('sha1', $_POST['password']);
-            // echo $password;
 
             $user_class = new User($pdo_conn);
             $user = $user_class->checkUserExists($email, $password);

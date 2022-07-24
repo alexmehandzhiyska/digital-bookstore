@@ -1,3 +1,7 @@
 main {
     min-height: 94vh;
 }
+
+.error-message {
+    color: rgb(182, 95, 95);
+}

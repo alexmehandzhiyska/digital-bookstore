@@ -10,6 +10,16 @@ $('#register-form').on('submit', e => {
     const password = formData.get('password');
     const repeatPassword = formData.get('repeat_password');
 
+    if (!firstName || !lastName || !email || !password || !repeatPassword) {
+        $('.error-message').text('All fields are required!');
+        return;
+    }
+
+    if (password !== repeatPassword) {
+        $('.error-message').text('Passwords must match!');
+        return;
+    }
+
     $.ajax({
         url: '/register',
         method: 'POST',

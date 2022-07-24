@@ -50,6 +50,8 @@
                 <textarea class="form-control" id="additional_info" name="additional_info" rows="4"></textarea>
             </div>
 
+            <p class="error-message"></p>
+
             <div class="d-flex flex-column align-items-center justify-content-center">
                 <div class="d-flex justify-content-center align-items-center btn btn-primary btn-block mb-5" id="place-order-btn"> 
                     <i class="fa-solid fa-cart-arrow-down px-2"></i>

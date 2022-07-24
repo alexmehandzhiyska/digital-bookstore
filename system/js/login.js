@@ -7,6 +7,11 @@ $('#login-form').on('submit', e => {
     const email = formData.get('email');
     const password = formData.get('password');
 
+    if (!email || !password) {
+        $('.error-message').text('All fields are required!');
+        return;
+    }
+
     $.ajax({
         url: '/login',
         method: 'POST',

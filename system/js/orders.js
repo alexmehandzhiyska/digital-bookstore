@@ -10,6 +10,11 @@ $('#order-form').on('submit', e => {
     const phone = formData.get('phone');
     const additionalInfo = formData.get('additional_info');
 
+    if (!firstName || !lastName || !lastName || !address || !phone) {
+        $('.error-message').text('All fields are required!');
+        return;
+    }
+
     const email = localStorage.getItem('email');
 
     $.ajax({

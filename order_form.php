@@ -64,10 +64,8 @@
     <?php include './footer.php' ?>
 
     <?php
-        require('./conf/db.conf.php');
-        require('./classes/Utils.class.php');
-        require('./classes/Order.class.php');
-        require('./classes/Cart.class.php');
+        require_once('conf/db.conf.php');
+        require_once('classes/classes.inc');
 
         $order_class = new Order($pdo_conn);
         $cart_class = new Cart($pdo_conn);

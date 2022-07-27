@@ -1,6 +1,4 @@
 <?php
-require('Utils.class.php');
-
 class User extends Utils {
 
     private $_pdo = null;

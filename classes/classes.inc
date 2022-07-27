@@ -1,0 +1,10 @@
+<?php
+    require_once('Utils.class.php');
+    require_once('Author.class.php');
+    require_once('Cart.class.php');
+    require_once('Book.class.php');
+    require_once('Order.class.php');
+    require_once('Rating.class.php');
+    require_once('User.class.php');
+    require_once('Wishlist.class.php');
+?>

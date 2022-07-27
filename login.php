@@ -64,8 +64,8 @@
     <?php include './footer.php' ?>
 
     <?php
-        require('./conf/db.conf.php');
-        require('./classes/User.class.php');
+        require_once('conf/db.conf.php');
+        require_once('classes/classes.inc');
         
         if (isset($_POST['login'])) {
             $email = $_POST['email'];

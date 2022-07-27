@@ -23,9 +23,8 @@
 
         <section class="books d-flex justify-content-around">
             <?php 
-                require('./conf/db.conf.php');
-                require('./classes/Utils.class.php');
-                require('./classes/Wishlist.class.php');
+                require_once('conf/db.conf.php');
+                require_once('classes/classes.inc');
                 
                 $wishlist_class = new Wishlist($pdo_conn);
                 $books = $wishlist_class->getByUser($_SESSION['user_id']);

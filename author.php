@@ -23,8 +23,7 @@
     <main>
         <section class="d-flex justify-content-around">
             <?php 
-                require_once('conf/db.conf.php');
-                require_once('classes/classes.inc');
+                require_once('init.inc');
 
                 $book_class = new Book($pdo_conn);
                 $author_class = new Author($pdo_conn);

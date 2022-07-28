@@ -21,8 +21,7 @@
 
         <section class="books d-flex justify-content-between">
             <?php 
-                require_once('conf/db.conf.php');
-                require_once('classes/classes.inc');
+                require_once('init.inc');
 
                 $book_class = new Book($pdo_conn);
                 $books = $book_class->getAll();

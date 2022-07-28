@@ -89,8 +89,7 @@
     <?php include './footer.php' ?>
 
     <?php
-        require_once('conf/db.conf.php');
-        require_once('classes/classes.inc');
+        require_once('init.inc');
 
         if (isset($_POST['login'])) {
             $first_name = $_POST['first_name'];

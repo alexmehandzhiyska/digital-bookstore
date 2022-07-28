@@ -20,8 +20,7 @@
 
         <section class="d-flex justify-content-around">
             <?php 
-                require_once('conf/db.conf.php');
-                require_once('classes/classes.inc');
+                require_once('init.inc');
             
                 $cart_class = new Cart($pdo_conn);
                 $books = $cart_class->getByUser($_SESSION['user_id']);

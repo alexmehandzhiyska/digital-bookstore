@@ -64,8 +64,7 @@
     <?php include './footer.php' ?>
 
     <?php
-        require_once('conf/db.conf.php');
-        require_once('classes/classes.inc');
+        require_once('init.inc');
 
         $order_class = new Order($pdo_conn);
         $cart_class = new Cart($pdo_conn);
